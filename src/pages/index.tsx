@@ -7,6 +7,10 @@ export default function Home() {
         <title>ig.news</title>
       </Head>
 
+      <h1 style={{fontSize: "5rem"}}>
+        Hello World
+      </h1>
+
     </>
   )
 }
