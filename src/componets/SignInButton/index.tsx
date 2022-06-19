@@ -1,11 +1,24 @@
 import styles from './styles.module.scss'
+import {FiX} from 'react-icons/fi'
 import { FaGithub } from 'react-icons/fa';
 
 
 export function SignInButton() {
 
     const insUserLoggedIn = true;
-    return (
+    return insUserLoggedIn ? (
+        <>
+            <button type='button'
+                className={styles.signInButton}
+            >
+                <FaGithub color='#04d361' />
+                Yago Passos
+                <FiX color='#737380' className={styles.closeIcon}/>
+
+        
+            </button>
+        </>
+    ) : (
         <>
             <button type='button'
                 className={styles.signInButton}
