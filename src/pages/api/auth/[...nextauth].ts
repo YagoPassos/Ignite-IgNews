@@ -48,9 +48,11 @@ export default NextAuth({
           )
         )
 
-        return true
+        return true;
+
       } catch {
-        return false
+        return false;
+        
       }
     }
   }
