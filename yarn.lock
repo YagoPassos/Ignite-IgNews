@@ -1176,13 +1176,12 @@
   resolved "https://registry.yarnpkg.com/@panva/hkdf/-/hkdf-1.0.2.tgz#bab0f09d09de9fd83628220d496627681bc440d6"
   integrity sha512-MSAs9t3Go7GUkMhpKC44T58DJ5KGk2vBo+h1cqQeqlMfdGkxaVB78ZWpv9gYi/g2fa4sopag9gJsNvS8XGgWJA==
 
-"@prismicio/client@^6.6.1":
-  version "6.6.1"
-  resolved "https://registry.yarnpkg.com/@prismicio/client/-/client-6.6.1.tgz#087547a7d3283906a0d4cf7ea417e756fdc9b8eb"
-  integrity sha512-Jq/s9fC8pz49f68dk6gMNFqDItPg7Ka8PO0D9dTzibx83+GKha+y0clqaygxPWlgE8csc9Yk/KS6N8AvesnTVA==
+"@prismicio/client@5.1.1":
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/@prismicio/client/-/client-5.1.1.tgz#5aa51c3efcd7fc57a08e729814f16d5cc2755d1c"
+  integrity sha512-0wtQrPZCATBmgLklQYgjSrmz3YtMP+5lHakv30MUVyUez2LVoukhVJWTj1uXwsOz2Yh2xLkAp+PHqTOiUvaM/Q==
   dependencies:
-    "@prismicio/helpers" "^2.3.1"
-    "@prismicio/types" "^0.1.29"
+    cross-fetch "^3.0.6"
 
 "@prismicio/helpers@^2.3.1":
   version "2.3.1"
@@ -1241,7 +1240,7 @@
     newtype-ts "^0.3.5"
     tslib "^2.3.1"
 
-"@prismicio/types@^0.1.22", "@prismicio/types@^0.1.27", "@prismicio/types@^0.1.29":
+"@prismicio/types@^0.1.22", "@prismicio/types@^0.1.27":
   version "0.1.29"
   resolved "https://registry.yarnpkg.com/@prismicio/types/-/types-0.1.29.tgz#52914a5ba304c8b75fdcf398e5014ac4364fdffb"
   integrity sha512-wp7DHqMK0FDMcFQfJbqTAzWNBkM6/rRq71jMw6x9m07nWCUqytJQQKg6/15uduIeSqPXmyfJW21drsmChGaxsQ==
@@ -2378,7 +2377,7 @@ cosmiconfig@^7.0.0:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
-cross-fetch@3.1.5, cross-fetch@^3.1.5:
+cross-fetch@3.1.5, cross-fetch@^3.0.6, cross-fetch@^3.1.5:
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.5.tgz#e1389f44d9e7ba767907f7af8454787952ab534f"
   integrity sha512-lvb1SBsI0Z7GDwmuid+mU3kWVBwTVUbe7S0H52yaaAdQOXq2YktTCZdlAcNKFzE6QtRz0snpw9bNiPeOIkkQvw==
