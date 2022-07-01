@@ -7,6 +7,20 @@
           "blocks": 1
         }
       }
+    },
+    "post": {
+      "content": {
+        "config": {
+          "patternType": "HEADING",
+          "blocks": 1
+        }
+      },
+      "title": {
+        "config": {
+          "patternType": "PARAGRAPH",
+          "blocks": 1
+        }
+      }
     }
   }
 }
