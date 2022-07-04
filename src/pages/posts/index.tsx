@@ -58,7 +58,7 @@ export const getStaticProps: GetStaticProps = async () => {
         return {
             slug: post.uid,
             title: post.data.title[0].text,
-            excerpt: post.data.content.find(content => content.type === 'preformatted')?.text ?? '',
+            excerpt: post.data.content.find(content => content.type === 'paragraph')?.text ?? '',
             updatedAt: new Date(post.last_publication_date).toLocaleDateString('pt-BR', {
                 day: '2-digit',
                 month: 'long',

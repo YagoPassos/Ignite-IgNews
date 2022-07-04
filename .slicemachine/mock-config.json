@@ -11,7 +11,7 @@
     "post": {
       "content": {
         "config": {
-          "patternType": "HEADING",
+          "patternType": "STORY",
           "blocks": 1
         }
       },

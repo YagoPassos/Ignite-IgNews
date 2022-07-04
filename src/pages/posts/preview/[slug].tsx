@@ -1,15 +1,15 @@
-import { asHTML } from "@prismicio/helpers"
-import { GetServerSideProps } from "next"
+import { GetStaticProps } from "next"
 import { getSession } from "next-auth/react"
 import Head from "next/head"
-import { RichText } from "prismic-dom"
-import { getPrismicClient } from "../../services/prismic"
+import { RichText } from "prismic-reactjs"
+import { asHTML } from "@prismicio/helpers"
+import { getPrismicClient } from "../../../services/prismic"
 
-import styles from './post.module.scss'
+import styles from '../post.module.scss'
 
 
 
-interface PostProps {
+interface PostPreviewProps {
 
     post: {
         slug: string,
@@ -20,7 +20,7 @@ interface PostProps {
 
 }
 
-export default function Post({ post }: PostProps) {
+export default function PostPreview({ post }: PostPreviewProps) {
     return (
         <>
             <Head>
@@ -42,25 +42,25 @@ export default function Post({ post }: PostProps) {
     )
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ req, params }) => {
-    const session = await getSession({ req })
+export const getStaticPaths = () => {
+    return{
+        paths: [],
+        fallback: 'blocking'
+    }
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
 
     const { slug } = params;
 
-    if(!session.activeSubscription){
-        return {
-            redirect: {
-                destination: '/',
-                permanent: false,
-            }
-        }
-    }
-
-    const prismic = getPrismicClient(req)
+    const prismic = getPrismicClient()
 
     const response = await prismic.getByUID<any>('post', String(slug), {})
 
     // console.log(JSON.stringify(response, null, 2))
+    // console.log(JSON.stringify(RichText.render(response.data.content), null, 2))
+
+    console.log(asHTML(response.data.content))
 
     const post = {
         slug,
