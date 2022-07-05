@@ -1,11 +1,14 @@
-import { GetStaticProps } from "next"
-import { getSession } from "next-auth/react"
+import { GetStaticPaths, GetStaticProps } from "next"
+import { getSession, useSession } from "next-auth/react"
 import Head from "next/head"
 import { RichText } from "prismic-reactjs"
 import { asHTML } from "@prismicio/helpers"
 import { getPrismicClient } from "../../../services/prismic"
 
 import styles from '../post.module.scss'
+import Link from "next/link"
+import { useEffect } from "react"
+import { useRouter } from "next/router"
 
 
 
@@ -21,6 +24,16 @@ interface PostPreviewProps {
 }
 
 export default function PostPreview({ post }: PostPreviewProps) {
+
+    const { data: session } = useSession();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (session?.activeSubscription) {
+            router.push(`/posts/${post.slug}`)
+        }
+    }, [session])
+
     return (
         <>
             <Head>
@@ -32,18 +45,25 @@ export default function PostPreview({ post }: PostPreviewProps) {
                     <h1>{post.title}</h1>
                     <time>{post.updatedAt}</time>
 
-                    <div 
-                    className={styles.postContent}
-                    dangerouslySetInnerHTML={{__html: post.content }}
+                    <div
+                        className={`${styles.postContent} ${styles.previewContent}`}
+                        dangerouslySetInnerHTML={{ __html: post.content }}
                     />
+
+                    <div className={styles.continueReading}>
+                        Wanna continue reading?
+                        <Link href="/">
+                            <a href="">Subscribe now 🤗</a>
+                        </Link>
+                    </div>
                 </article>
             </main>
         </>
     )
 }
 
-export const getStaticPaths = () => {
-    return{
+export const getStaticPaths: GetStaticPaths = async () => {
+    return {
         paths: [],
         fallback: 'blocking'
     }
@@ -57,15 +77,11 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
     const response = await prismic.getByUID<any>('post', String(slug), {})
 
-    // console.log(JSON.stringify(response, null, 2))
-    // console.log(JSON.stringify(RichText.render(response.data.content), null, 2))
-
-    console.log(asHTML(response.data.content))
 
     const post = {
         slug,
         title: response.data.title[0].text,
-        content: asHTML(response.data.content),
+        content: asHTML(response.data.content.splice(0, 3)),
         updatedAt: new Date(response.last_publication_date).toLocaleDateString('pt-BR', {
             day: '2-digit',
             month: 'long',
@@ -74,7 +90,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }
 
     return {
-        props: { post }
+        props: {
+            post,
+        },
+        revalidate: 60 * 30//30 minutes
     }
-
 }
