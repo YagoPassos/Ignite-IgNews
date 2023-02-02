@@ -17,6 +17,7 @@
     "resolveJsonModule": true,
     "moduleResolution": "node",
     "isolatedModules": true,
+    "types": ["node", "jest", "@testing-library/jest-dom"],
     "jsx": "preserve"
     },
   "include": [

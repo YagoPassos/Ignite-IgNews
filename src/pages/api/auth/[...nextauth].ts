@@ -20,8 +20,8 @@ export default NextAuth({
     }),
   ],
   callbacks: {
+  
     async session({ session }) {
-
       try {
         const userActiveSubscription = await fauna.query(
           q.Get(
@@ -59,7 +59,7 @@ export default NextAuth({
     },
 
     async signIn({ user, account, profile, credentials }) {
-
+      // console.log({user})
       const { email } = user;
 
       try {
@@ -88,10 +88,12 @@ export default NextAuth({
 
         return true;
 
-      } catch {
+      } catch (e) {
+        console.log(e)
         return false;
 
       }
     }
-  }
+  },
+  secret: process.env.NEXTAUTH_SECRET,
 })
