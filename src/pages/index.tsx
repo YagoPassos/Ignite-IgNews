@@ -9,13 +9,11 @@ import { stripe } from '../services/stripe'
 interface HomeProps {
   product : {
     priceId: string,
-    amount: number,
+    amount: string,
   }
 }
 
 export default function Home( {product} : HomeProps) {
-
-  console.log(product)
 
   return (
     <>
